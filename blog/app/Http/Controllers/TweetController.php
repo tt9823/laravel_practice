@@ -7,10 +7,17 @@ use App\Tweet;
 
 class TweetController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => ['create', 'edit', 'store', 'edit', 'update', 'destroy']
+        ]);
+    }
+
     public function index() 
     {
         $tweets = Tweet::all();
-        return view('tweet.index',[
+        return view('tweet.index', [
             'tweets' => $tweets,
         ]);
     }
@@ -22,9 +29,14 @@ class TweetController extends Controller
 
     public function store(Request $request) 
     {
+        $this->validate($request, [
+            'body'=>['required', 'string', 'max:255']
+        ]);
         $tweet = new Tweet;
         $tweet->body = $request->input('body');
         $tweet->save();
+
+        $request->session()->flash('flashmessage', 'ツイートの新規投稿が完了しました');
 
         return redirect('/tweets');
     }

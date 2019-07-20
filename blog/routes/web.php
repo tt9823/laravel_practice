@@ -23,3 +23,7 @@ Route::get('/', function () {
 // Route::put('/tweets/{id}', 'TweetController@update');
 // Route::delete('/tweets/{id}', 'TweetController@destroy');
 Route::resource('/tweets', 'TweetController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
