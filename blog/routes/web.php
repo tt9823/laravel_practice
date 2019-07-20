@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/tweets', 'TweetController@index');
-Route::get('/tweets/create', 'TweetController@create');
-Route::post('/tweets', 'TweetController@store');
+// Route::get('/tweets', 'TweetController@index');
+// Route::get('/tweets/create', 'TweetController@create');
+// Route::post('/tweets', 'TweetController@store');
+// Route::get('/tweets/{id}', 'TweetController@show');
+// Route::get('/tweets/{id}/edit', 'TweetController@edit');
+// Route::put('/tweets/{id}', 'TweetController@update');
+// Route::delete('/tweets/{id}', 'TweetController@destroy');
+Route::resource('/tweets', 'TweetController');
