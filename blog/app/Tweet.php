@@ -10,4 +10,8 @@ class Tweet extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function hashTags()
+    {
+        return $this->belongsToMany('App\HashTag');
+    }
 }
