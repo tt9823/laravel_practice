@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/user/{id}/profile', 'UserProfileController@show');
+Route::get('user/{id}/profile/edit', 'UserProfileController@edit')->name('user_profile.edit');
+Route::match(['put', 'patch'], 'user/{user}/profile', 'UserProfileController@update')->name('user_profile.update');
 // Route::get('/tweets', 'TweetController@index');
 // Route::get('/tweets/create', 'TweetController@create');
 // Route::post('/tweets', 'TweetController@store');

@@ -34,6 +34,7 @@ class TweetController extends Controller
         ]);
         $tweet = new Tweet;
         $tweet->body = $request->input('body');
+        $tweet->user_id = $request->user()->id;
         $tweet->save();
 
         $request->session()->flash('flashmessage', 'ツイートの新規投稿が完了しました');
